@@ -17,9 +17,11 @@ notesRouter
   })
   //need to fix this as it is saying that one of the constraints is not found
   .post(jsonParser, (req, res, next) =>{
-    const id = uuid().toString()
-    const {name, folderId, content} = req.body
-    const newNote = {id, name, folderId, content}
+    
+    let {name, folderId, content} = req.body
+    folderId = parseInt(folderId, 10)
+    console.log(folderId)
+    const newNote = {name, folderId, content}
     const knexInstance = req.app.get('db')
 
     for(const [key, value] of Object.entries(newNote)){
@@ -58,6 +60,7 @@ notesRouter
   })
   .patch(jsonParser, (req, res, next)=>{
     const {name, folderId, content} = req.body
+    folderId = parseInt(folderId, 10)
     const noteToUpdate = {name, folderId, content}
 
     NotesService.updateNotes(

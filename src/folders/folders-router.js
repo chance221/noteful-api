@@ -1,6 +1,6 @@
 const express = require('express')
 const FoldersService = require('./folders-service')
-const uuid = require('uuid/v4')
+//const uuid = require('uuid/v4')
 const foldersRouter = express.Router()
 const jsonParser = express.json()
 const xss = require('xss')
@@ -23,8 +23,8 @@ foldersRouter
   .post(jsonParser, (req, res, next) =>{
   
     const {name} = req.body
-    const id = uuid().toString()
-    const newFolder = {name, id}
+    
+    const newFolder = {name}
     const knexInstance = req.app.get('db')
 
     for(const [key, value] of Object.entries(newFolder)){
