@@ -19,7 +19,7 @@ notesRouter
     
     let {name, folderId, content} = req.body
     folderId = parseInt(folderId, 10)
-    console.log(folderId)
+    
     const newNote = {name, folderId, content}
     const knexInstance = req.app.get('db')
 
