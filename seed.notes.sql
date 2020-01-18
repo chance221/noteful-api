@@ -1,4 +1,4 @@
- INSERT INTO notes(id, name, folderId, content)
+ INSERT INTO notes(id, name, "folderId", content)
     VALUES
     (
     1,

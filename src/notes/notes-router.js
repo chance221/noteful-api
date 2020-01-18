@@ -1,6 +1,5 @@
 const express = require('express')
 const NotesService = require('./notes-service')
-const uuid = require('uuid/v4')
 const notesRouter = express.Router()
 const jsonParser = express.json()
 const xss = require('xss')
@@ -58,8 +57,8 @@ notesRouter
       })
       .then(next)
   })
-  .patch(jsonParser, (req, res, next)=>{
-    const {name, folderId, content} = req.body
+  .put(jsonParser, (req, res, next)=>{
+    let {name, folderId, content} = req.body
     folderId = parseInt(folderId, 10)
     const noteToUpdate = {name, folderId, content}
 
@@ -69,7 +68,7 @@ notesRouter
       noteToUpdate
       )
         .then(numRowsAffected =>{
-          res.status(204).end()
+          res.status(204).json(numRowsAffected).end()
         })
         .catch(next)
   })

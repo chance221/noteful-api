@@ -54,13 +54,14 @@ foldersRouter
     .catch(next)
   })
   .delete((req, res, next) =>{
+    console.log(req.params.id)
     FoldersService.deleteFolders(req.app.get('db'), req.params.id)
     .then(()=>{
       res.status(204).end()
     })
     .catch(next)
   })
-  .patch(jsonParser, (req, res, next)=>{
+  .put(jsonParser, (req, res, next)=>{
 
     const {name} = req.body
     const folderToUpdate = {name}
